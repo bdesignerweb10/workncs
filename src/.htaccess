@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteRule ^/?$ index.php
+RewriteRule ^servicos/?$ servicos.php
+RewriteRule ^consultoria/?$ consultoria.php
+RewriteRule ^cursus/?$ cursos.php
+RewriteRule ^quem-somos/?$ quem-somos.php
+RewriteRule ^contato/?$ contato.php
+

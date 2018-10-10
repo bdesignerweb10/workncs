@@ -1,0 +1,326 @@
+@import "../components/bootstrap/scss/bootstrap";
+@import "../components/components-font-awesome/scss/fontawesome";
+
+.topo{
+	background: url(../img/bg.png);
+}
+
+.logo{
+	text-align: center;
+	padding: 20px;
+}
+
+.redessociais{
+	text-align: right;
+    margin-right: 16px;
+    margin-top: 10px;
+    a{
+    	padding-right: 10px;
+    }
+}
+
+/* Menu */
+
+.menu{
+	font-family: Arial, Helvetica, sans-serif;
+    margin-top: 26px;
+}
+
+.menu a{
+	color:  #809098;
+    font-size: 19px;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    margin: 0 20px auto;
+    line-height: 2;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    &:hover{
+		color:  #435762;
+    	border-bottom: 2px solid #4db3e3;
+    	padding-bottom: 1px;	
+	}
+}
+
+/* Fim menu */
+
+.capa{
+	background-image: url(../img/capa.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 320px;
+	opacity: 0.8;
+}
+
+.head-title{
+	text-transform: uppercase;
+	color: #435762;
+	border-bottom: 3px solid #4db3e3;
+}
+
+.icon-index{
+	margin-left: 35px;
+}
+
+.text-index{
+	border: 1px solid #ccc;
+	padding: 20px;
+	text-align: justify;
+}
+
+.btn-index{
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.loca-cont{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 60px;
+    font-weight: 900;
+    color: #435762;
+    margin: 0 0 30px 0;
+    letter-spacing: -2px;
+	//color: #435762;
+}
+
+@media screen and (min-width: 320px) and (max-device-width: 480px) {
+	.loca-cont{
+		font-size: 30px;
+	}
+}
+
+iframe{ 
+	display:block; 
+	width:100%; 
+	border:none; 
+}
+
+.contato-localizacao{
+	margin-top: 30px;
+}
+
+.contato-fundo{
+	background-color: #e2e2e2;
+	height: auto;
+	padding-bottom: 20px;
+}
+
+.contato-fundo-contato{
+	background-color: #e2e2e2;
+	padding-bottom: 50px;	
+}
+
+.cont-index{
+	padding-top: 50px;
+    margin-left: 25px;
+}
+
+.cont-index-contato{
+	padding-top: 28px;
+}
+
+.form-cont-index{
+	height: 70px;
+	width: 406px;
+}
+
+.form-cont-index-contato{
+	height: 70px;
+}
+
+.form-cont-area{
+	padding-top: 20px;
+	margin-left: 39px;
+}
+
+.form-cont-area-contato{
+	padding-top: 20px;
+}
+
+.btn-enviar{
+	float: right;
+	height: 70px;
+	width: 150px;
+}
+
+
+/* Quem somos */
+
+.quem-somos{
+	background-color: #e2e2e2;
+}
+
+@media screen and (max-width: 600px) {
+	.text-sobre{
+	padding-left: 0 !important;
+	}
+}
+
+.title{
+	padding-top: 30px;
+    padding-bottom: 20px;
+    margin-left: 155px;
+    color: #4db3e3;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.title-servicos{
+	padding-top: 30px;
+    padding-bottom: 20px;
+    color: #4db3e3;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.title-contato{	
+    color: #4db3e3;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.text-sobre{
+	padding-left: 155px;
+	text-align: justify;
+	font-family: verdana;
+}
+
+.img-quemsomos{
+	margin-top: 96px;
+	margin-left: 56px;
+	margin-bottom: 30px;
+}
+
+/* Fotter */
+
+.footer-fundo{
+	background-color: #435762;
+	height: auto;
+}
+
+.footer-title{
+	padding-top: 30px;
+	padding-bottom: 20px;
+	margin-left: 50px;
+	color: #4db3e3;
+	font-weight: bold;
+	font-size: 30px;
+	text-transform: uppercase;
+}
+
+.footer-menu{
+	padding-bottom: 30px;
+}
+
+.nav-footer{
+	font-size: 15px;
+	padding: 0;
+	margin-left: 50px;
+	font-size: 17px;
+	color: #fff;
+	&:hover{
+		color: #4db3e3;
+	}
+}
+
+.facebook{
+	margin-left: 10px;
+}
+
+.social{
+	margin-left: 40px;
+}
+
+.email-fone{
+	margin-top: 40px;
+    font-size: 1.5rem;
+}
+
+.local{
+	margin-top: 20px;
+	width: 75%;
+	border: 3px solid #fff;
+	border-radius: 5px;
+}
+
+.servicos{
+	margin-bottom: 30px;
+}
+
+.galeria{
+	padding-bottom: 30px;
+	padding-left: 75px;
+	background: #e2e2e2;
+}
+
+.img-servico{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.texto-servico{
+	text-align: justify;
+}
+
+.form-area-index{
+	margin-left: 40px;
+	width: 97%;
+}
+
+.text-curso{
+	text-align: justify;
+}
+
+.btn-cursos-detalhes{
+	margin-bottom: 30px;
+	padding-left: 75px;
+}
+
+.btn-inscricao{
+	float: right;
+    height: 70px;
+    width: 190px;
+    margin-top: 20px;
+}
+
+.info-inscricao{
+	margin-top: 28px;
+}
+
+
+@media screen and (min-width: 320px) and (max-device-width: 480px) {
+.form-cont-index {
+    height: 70px;
+    width: 300px;
+    margin-top: 5px;
+	}
+.form-area-index {
+    margin-left: 40px;
+    width: 83%;
+    }
+.btn-enviar {
+    float: right;
+    height: 70px;
+    width: 151px;
+    margin-right: 20px;
+    }
+.capa {
+    background-image: url(../img/capa.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 105px;
+    opacity: 0.8;
+    }	
+}
+
+.outros-cursos{
+	margin-bottom: 20px;
+}
+
+.btn-cursos{
+	float: right;
+    padding-right: 27px;
+    padding-bottom: 20px;
+}
