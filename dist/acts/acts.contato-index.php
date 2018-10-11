@@ -56,3 +56,13 @@
     <?php } ?>
 </html>   
 
+</div>
+        </div>              
+        <script>
+            $(document).ready(function () {
+                $('#myModal').modal('show');
+            });
+        </script>   
+    <?php } ?>
+</html>   
+
