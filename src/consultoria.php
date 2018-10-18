@@ -11,9 +11,9 @@
 			<?php if ($consultoria && $consultoria->num_rows > 0) {
 				while($dados = $consultoria->fetch_object()) {	
 
-				$menu .= '<a class="list-group-item list-group-item-action" id="'.$dados->id.'" data-toggle="list" href="#a'.$dados->id.'" role="tab" aria-controls="home"> '.$dados->titulo.'</a>';
+				$menu .= '<a class="list-group-item list-group-item-action '. ($dados->id == 1 ? "active" : "") .'" id="'.$dados->id.'" data-toggle="list" href="#a'.$dados->id.'" role="tab" aria-controls="home"> '.$dados->titulo.'</a>';
 
-				$cont .= '<div class="tab-pane fade show texto-servico" id="a'.$dados->id.'" role="tabpanel" aria-labelledby="'.$dados->id.'">
+				$cont .= '<div class="tab-pane fade show texto-servico '. ($dados->id == 1 ? "active" : "") .'" id="a'.$dados->id.'" role="tabpanel" aria-labelledby="'.$dados->id.'">
 			      		'.$dados->descricao.'
 				  	<img class="img-servico" src="img/servicos/'.$dados->img.'">	
 				  	</div>';

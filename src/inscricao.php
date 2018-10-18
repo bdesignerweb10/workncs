@@ -7,7 +7,9 @@
 
 	if ($cursos && $cursos->num_rows > 0) {
 	    while($curso = $cursos->fetch_object()) {
-			$nome = $curso->nome;			
+			$id = $curso->cod_curso;
+			$nome = $curso->nome;
+			$data = $curso->data_inicio;			
 		}
 	}
 ?>
@@ -15,23 +17,24 @@
 	<div class="container-fluid">
 		<div class="row contato-fundo-contato">
 			<div class="col-sm-6">
-				<form>
+				<form action="acts/acts.inscricao.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
 				  <div class="row cont-index-contato">
 				    <div class="col">
-				      <input type="text" class="form-control form-cont-index-contato" placeholder="Nome">
+				      <input type="text" name="nome" id="nome" class="form-control form-cont-index-contato" placeholder="Nome">
 				    </div>
 				  </div>
 				  <div class="row cont-index-contato">  
 				    <div class="col-8">
-				      <input type="text" class="form-control form-cont-index-contato" placeholder="E-mail">
+				      <input type="text" name="email" id="email" class="form-control form-cont-index-contato" placeholder="E-mail">
 				    </div>
 				    <div class="col-4">
-				      <input type="number" class="form-control form-cont-index-contato" placeholder="Telefone">
+				      <input type="number" name="telefone" id="telefone" class="form-control form-cont-index-contato" placeholder="Telefone">
 				    </div>		    
 				  </div>
 				  <div class="row cont-index-contato">
 				    <div class="col">
-				      <input type="text" class="form-control form-cont-index-contato" placeholder="<?php echo $nome; ?>" disabled>
+				      <input type="text" name="curso" id="curso" class="form-control form-cont-index-contato" placeholder="<?php echo $nome; ?>" disabled>
+				      <input type="hidden" name="data_curso" VALUE="<?php echo $data; ?>">
 				    </div>
 				  </div>				  
 				  <button type="submit" class="btn btn-dark btn-lg btn-inscricao">Realizar inscrição</button>

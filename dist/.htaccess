@@ -7,3 +7,9 @@ RewriteRule ^cursus/?$ cursos.php
 RewriteRule ^quem-somos/?$ quem-somos.php
 RewriteRule ^contato/?$ contato.php
 
+RewriteRule ^admin/?$ admin/index.php
+RewriteRule ^admin/home/?$ admin/home.php
+RewriteRule ^admin/cursos/?$ admin/cursos.php
+RewriteRule ^admin/consultoria/?$ admin/consultoria.php
+RewriteRule ^admin/inscricao/?$ admin/inscrcao.php
+RewriteRule ^admin/logout/?$ admin/logout.php

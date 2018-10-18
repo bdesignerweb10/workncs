@@ -75,7 +75,7 @@ gulp.task("js", ['cache:js'], function() {
 
  /* move a pasta fonts para pasta dist/fonts */
  gulp.task("move-fonts", function() { 
- 	return gulp.src('./src/components/components-font-awesome/fonts/**') 
+ 	return gulp.src('./src/components/components-font-awesome/webfonts/**') 
  	.pipe(gulp.dest('./dist/fonts'))
  });
 
@@ -152,7 +152,7 @@ gulp.task("sass-adm", ['cache:css-adm'], function() {
 
  /* move a pasta fonts para pasta dist/fonts */
  gulp.task("move-fonts-adm", function() { 
- 	return gulp.src('./src/components/components-font-awesome/fonts/**') 
+ 	return gulp.src('./src/components/components-font-awesome/webfonts/**') 
  	.pipe(gulp.dest('./dist/admin/fonts'))
  });
 
