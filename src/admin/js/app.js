@@ -442,7 +442,7 @@ $("#logout").on("click", function(e) {
 		formData.append('id', $('#id').val());
 		formData.append('titulo', $('#titulo').val());
 		formData.append('descricao', $('#descricao').val());
-		formData.append('img', $('#img')[0].files[0]);			
+		//formData.append('img', $('#img')[0].files[0]);			
 		formData.append("ativo", document.getElementById("ativo").checked?"0":"1");	
 		
 		$.ajax({
@@ -463,7 +463,7 @@ $("#logout").on("click", function(e) {
 						$('#id').val('');
 						$('#titulo').val('');
 						$('#descricao').val('');
-						$('#img').val('');
+						//$('#img').val('');
 						$('#ativo').val('');						
 
 						$('#alert-title').html("Dados alterados com sucesso!");
@@ -482,7 +482,7 @@ $("#logout").on("click", function(e) {
 						$('#id').val('');
 						$('#titulo').val('');
 						$('#descricao').val('');
-						$('#img').val('');
+						//$('#img').val('');
 						$('#ativo').val('');						
 					}
 			    }
@@ -495,7 +495,7 @@ $("#logout").on("click", function(e) {
 					$('#id').val('');
 					$('#titulo').val('');
 					$('#descricao').val('');
-					$('#img').val('');
+					//$('#img').val('');
 					$('#ativo').val('');
 			    };
 			}
@@ -605,6 +605,53 @@ $("#logout").on("click", function(e) {
 			}
 		});
     });
+
+    /* GERENCIAMENTO INSCRIÇÃO*/
+
+    $('.btn-download-inscricao').click(function(e) {
+		e.preventDefault();
+
+		$('#loading').modal({
+			keyboard: false
+		});
+
+    	var id = $(this).data('id');
+
+		$.ajax({
+			type: "POST",
+			url: "acts/acts.inscricao.php?act=dow&id=" + id,
+			success: function(data)
+			{
+				try {
+					$('#loading').modal('hide');
+
+					var retorno = JSON.parse(data.replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," "));
+
+					if(retorno.succeed) {
+						$('#alert-title').html("Download realizado com sucesso!");
+						$('#alert-content').html("O Download foi efetuado com sucesso! Ao fechar esta mensagem a página será recarregada.");
+						$('#alert').modal('show');
+
+						$('#alert').on('hidden.bs.modal', function (e) {
+							window.location.reload();
+						});
+					}
+					else {
+						$('#alert-title').html(retorno.title);
+						$('#alert-content').html(retorno.errno + " - " + retorno.erro);
+						$('#alert').modal('show');
+					}
+			    }
+			    catch (e) {
+					$('#loading').modal('hide');
+					$('#alert-title').html("Erro ao fazer parse do JSON!");
+					$('#alert-content').html(String(e.stack));
+					$('#alert').modal('show');
+			    };
+			}
+		});
+    });
+
 });
 
 /*!

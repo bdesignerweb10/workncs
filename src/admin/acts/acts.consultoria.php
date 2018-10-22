@@ -15,12 +15,12 @@
 
 					$id = $_GET['id']; 
 
-			    	$qry_consultoria = $conn->query("SELECT id, titulo, descricao, img ,ativo FROM consultoria WHERE id = $id") or trigger_error("27005 - " . $conn->error);
+			    	$qry_consultoria = $conn->query("SELECT id, titulo, descricao ,ativo FROM consultoria WHERE id = $id") or trigger_error("27005 - " . $conn->error);
 
 					if ($qry_consultoria && $qry_consultoria->num_rows > 0) {
 						$dados = "";
 		    			while($consul = $qry_consultoria->fetch_object()) {
-		    				$dados = '{"id" : "' . $consul->id . '", "titulo" : "' . $consul->titulo . '", "descricao" : "' . $consul->descricao . '","img" : "'. $consul->img .'"  ,"ativo" : "' . $consul->ativo . '"}';
+		    				$dados = '{"id" : "' . $consul->id . '", "titulo" : "' . $consul->titulo . '", "descricao" : "' . $consul->descricao . '","ativo" : "' . $consul->ativo . '"}';
 		    			}
 
 						echo '{"succeed": true, "dados": ' . $dados . '}';
@@ -61,7 +61,7 @@
 						}
 						else {
 							
-							if(isset($_FILES['img'])) {
+							/*if(isset($_FILES['img'])) {
 
 								if($_FILES['img']['type'] != "image/png") {
 					        		throw new Exception("Imagem enviada precisa ser tipo PNG!");
@@ -93,18 +93,18 @@
 									imagedestroy($dst);
 									imagedestroy($src);
 							    }							   
-							}
-							if($_FILES['img'] == ''){
+							}*/
+							/*if($_FILES['img'] == ''){
 								$imagem = 'no-image.png';
 							} else{
 							$imagem = $_FILES['img']['name'];	
-							}						
+							}*/						
 							$titulo = $_POST["titulo"];
 							$descricao = $_POST["descricao"];
 							$ativo = (isset($_POST["ativo"]) && $_POST["ativo"] == "0" ? "0" : "1");
 														
 
-							$qry_consultoria = "INSERT INTO consultoria (titulo, descricao, img, ativo) VALUES ('" . $titulo . "','" . $descricao . "', '". $imagem ."' ,'" . $ativo . "')";
+							$qry_consultoria = "INSERT INTO consultoria (titulo, descricao, ativo) VALUES ('" . $titulo . "','" . $descricao . "','" . $ativo . "')";
 
 							if ($conn->query($qry_consultoria) === TRUE) {
 								$conn->commit();
@@ -156,7 +156,7 @@
 							exit();
 						}
 						else {
-							if(isset($_FILES['img'])) {
+							/*if(isset($_FILES['img'])) {
 
 								if($_FILES['img']['type'] != "image/png") {
 					        		throw new Exception("Imagem enviada precisa ser tipo PNG!");
@@ -194,7 +194,7 @@
 								$imagem = 'no-image.png';
 							} else{
 							$imagem = $_FILES['img']['name'];	
-							}	
+							}*/	
 							$titulo = $_POST["titulo"];						
 							$descricao = $_POST["descricao"];						
 							$ativo = (isset($_POST["ativo"]) && $_POST["ativo"] == "0" ? "0" : "1");
@@ -202,8 +202,7 @@
 
 							$qry_consultoria = "UPDATE consultoria 
 											  SET titulo = '" . $titulo . "',										      
-											      descricao = '" . $descricao . "',
-											      img = '". $imagem ."',
+											      descricao = '" . $descricao . "',										      
 											      ativo = " . $ativo . "
 											WHERE id = $id";
 							if ($conn->query($qry_consultoria) === TRUE) {

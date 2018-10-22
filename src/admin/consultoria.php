@@ -86,11 +86,11 @@
 						    <textarea class="form-control form-control-lg" id="descricao" name="descricao" rows="6" placeholder="Informe a descrição..." data-error="Por favor, informe a descrição." required></textarea>
 			    			<div class="help-block with-errors"></div>
 			    		</div>					
-			    		<div class="col-sm-8 col-md-8 col-lg-10 col-xl-10">		    			
+			    		<!--<div class="col-sm-8 col-md-8 col-lg-10 col-xl-10">		    			
 							<label for="img">Imagem</label>
 			    			<input type="file" class="form-control form-control-lg" id="img" name="img" aria-describedby="img" placeholder="Insira sua foto" data-error="Por favor, insira sua foto." maxlength="120">
 			    			<div class="help-block with-errors"></div>
-			    		</div>			    		
+			    		</div>-->			    		
 					</div>
 					
 					<div class="row" style="margin-top:20px; margin-bottom: 10px;">	

@@ -8,8 +8,7 @@
 				$menu .= '<a class="list-group-item list-group-item-action '. ($dados->id == 1 ? "active" : "") .'" id="'.$dados->id.'" data-toggle="list" href="#a'.$dados->id.'" role="tab" aria-controls="home"> '.$dados->titulo.'</a>';
 
 				$cont .= '<div class="tab-pane fade show texto-servico '. ($dados->id == 1 ? "active" : "") .'" id="a'.$dados->id.'" role="tabpanel" aria-labelledby="'.$dados->id.'">
-			      		'.$dados->descricao.'
-				  	<img class="img-servico" src="img/servicos/'.$dados->img.'">	
+			      		'.nl2br (substr ($dados->descricao, 0)).'				  		
 				  	</div>';
 			  	}
 			}				

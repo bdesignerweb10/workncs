@@ -9211,3 +9211,6 @@ body {
   font-size: 1.25rem;
   line-height: 0.5;
   border-radius: 0.3rem; }
+
+.btn-pesquisar {
+  margin-top: 24px; }
