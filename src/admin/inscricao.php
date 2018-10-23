@@ -1,6 +1,6 @@
 <?php 
 	require_once('header.php');
-	$cursos = $conn->query("select id_inscricao, inscricao.nome, email, telefone, data_curso, inscricao.cod_curso, cursos.nome from inscricao inner join cursos on inscricao.cod_curso = cursos.cod_curso order by cursos.nome and data_curso;") or trigger_error($conn->error);
+	$cursos = $conn->query("select data_curso, inscricao.cod_curso, cursos.nome from inscricao inner join cursos on inscricao.cod_curso = cursos.cod_curso group by data_curso, inscricao.cod_curso, cursos.nome order by cursos.nome and data_curso") or trigger_error($conn->error);
 ?>
 <main class="maintable">
 	<div class="container">
@@ -30,7 +30,7 @@
       							<th scope="row" class="center"><?php echo $curso->nome; ?></th>
       							<th scope="row" class="center"><?php echo date('d/m/Y', strtotime($curso->data_curso)); ?></th>
 						        <td class='center'>									
-									<a href="#" class="btn-download-inscricao" data-id="<?php echo $id;?>" alt="Fazer Download inscritos <?php echo $curso->id; ?>" title="Fazer Download inscritos <?php echo $curso->cod_curso; ?>">
+									<a href="acts/acts.inscricao.php?act=dow&id=$id" class="" data-id="<?php echo $id;?>" alt="Fazer Download inscritos <?php echo $curso->id; ?>" title="Fazer Download inscritos <?php echo $curso->cod_curso; ?>">
 										<i class="fas fa-download fa-2x"></i>
 									</a>																		
 								</td>						           
