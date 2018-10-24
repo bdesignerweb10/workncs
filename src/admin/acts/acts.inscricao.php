@@ -34,7 +34,7 @@
 				$html .= '</tr>';		
 				 
 				$inscritos = "SELECT id_inscricao, inscricao.nome, email, telefone, data_curso, inscricao.cod_curso, cursos.nome as curso FROM inscricao INNER JOIN cursos ON inscricao.cod_curso = cursos.cod_curso 
-		WHERE inscricao.cod_curso = 2 ORDER BY cursos.nome AND data_curso";
+		WHERE inscricao.cod_curso = $id ORDER BY cursos.nome AND data_curso";
 				$inscricao = mysqli_query($conn , $inscritos);
 		
 				while($insc = mysqli_fetch_assoc($inscricao)){
@@ -57,6 +57,7 @@
 				header ("Content-type: application/x-msexcel");
 				header ("Content-Disposition: attachment; filename=\"{$arquivo}\"" );
 				header ("Content-Description: PHP Generated Data" );
+				
 				
 				echo $html;
 				exit;  

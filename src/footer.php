@@ -33,8 +33,9 @@
 </div>
 <script src="js/main.js"></script>
 <script src="js/lightbox-plus-jquery.min.js"></script>
-
-
-
+<script src="js/jquery.mask.js"></script>
+<script>
+	$("#telefone").mask("(00) 0000-00009");
+</script>
 </body>
 </html>

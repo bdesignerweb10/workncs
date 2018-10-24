@@ -20,20 +20,20 @@
 				<form action="acts/acts.inscricao.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
 				  <div class="row cont-index-contato">
 				    <div class="col">
-				      <input type="text" name="nome" id="nome" class="form-control form-cont-index-contato" placeholder="Nome">
+				      <input type="text" name="nome" id="nome" class="form-control form-cont-index-contato" placeholder="Informe seu nome" data-error="Por favor, informe o nome." maxlength="255" required>
 				    </div>
 				  </div>
 				  <div class="row cont-index-contato">  
 				    <div class="col-8">
-				      <input type="text" name="email" id="email" class="form-control form-cont-index-contato" placeholder="E-mail">
+				      <input type="text" name="email" id="email" class="form-control form-cont-index-contato" placeholder=" Informe seu e-mail" data-error="Por favor, informe o e-mail." maxlength="255" required>
 				    </div>
 				    <div class="col-4">
-				      <input type="number" name="telefone" id="telefone" class="form-control form-cont-index-contato" placeholder="Telefone">
+				      <input type="tel" name="telefone" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control form-cont-index-contato" placeholder="Informe o telefone" data-error="Por favor, informe o telefone." maxlength="16" required>
 				    </div>		    
 				  </div>
 				  <div class="row cont-index-contato">
 				    <div class="col">
-				      <input type="text" name="curso" id="curso" class="form-control form-cont-index-contato" placeholder="<?php echo $nome; ?>" disabled>
+				      <input type="text" name="curso" id="curso" value="<?php echo $nome; ?>" class="form-control form-cont-index-contato" placeholder="<?php echo $nome; ?>" readonly>
 				      <input type="hidden" name="data_curso" VALUE="<?php echo $data; ?>">
 				    </div>
 				  </div>				  

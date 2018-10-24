@@ -32,17 +32,17 @@
 		<form action="acts/acts.contato-index.php" method="post" enctype="multipart/form-data">
 		  <div class="row cont-index">
 		    <div class="col">
-		      <input type="text" name="nome" id="nome" class="form-control form-cont-index" placeholder="Nome">
+		      <input type="text" name="nome" id="nome" class="form-control form-cont-index" placeholder="Informe seu nome" data-error="Por favor, informe o nome." maxlength="255" required>
 		    </div>
 		    <div class="col">
-		      <input type="email" name="email" id="email" class="form-control form-cont-index" placeholder="E-mail">
+		      <input type="email" name="email" id="email" class="form-control form-cont-index" placeholder="Informe seu e-mail" data-error="Por favor, informe o e-mail." maxlength="255" required>
 		    </div>
 		    <div class="col">
-		      <input type="number" name="telefone" id="telefone" class="form-control form-cont-index" placeholder="Telefone">
+		      <input type="tel" name="telefone" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" class="form-control form-cont-index" placeholder="Informe seu telefone" data-error="Por favor, informe o telefone." maxlength="16" required>
 		    </div>		    
 		  </div>
 		  <div class="form-group form-cont-area-contato">		    
-		    <textarea class="form-control form-area-index" name="mensagem" id="mensagem" rows="5" placeholder="Escreva sua mensagem..."></textarea>
+		    <textarea class="form-control form-area-index" name="mensagem" id="mensagem" rows="5" placeholder="Escreva sua mensagem..." data-error="Digite sua mensagem." required></textarea>
 		  </div>
 		  <button type="submit" class="btn btn-dark btn-lg btn-enviar">Enviar</button>
 		</form>

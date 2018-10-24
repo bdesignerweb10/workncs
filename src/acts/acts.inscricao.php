@@ -9,6 +9,8 @@
     $telefone = $_POST["telefone"];
     $data_curso = $_POST["data_curso"];
     $curso = $_POST["curso"];
+
+    $data_curso_email = date('d/m/Y',  strtotime($data_curso));
     
     
     $qry_inscricao = "INSERT INTO inscricao (nome, email, telefone, data_curso, cod_curso) VALUES ('" . $nome . "','" . $email . "', '". $telefone ."' ,'" . $data_curso . "','" . $id . "')";
@@ -61,7 +63,7 @@
     $msg .= 'E-mail: '.$email.'<br />';
     $msg .= 'Telefone: '.$telefone.'<br />';
     $msg .= 'Curso: '.$curso.'<br />';
-    $msg .= 'Data: '.$data_curso.'<br />';    
+    $msg .= 'Data: '.$data_curso_email.'<br />';    
     $msg .= '________________________________________________________'.'<br /><br />';    
 
     require_once('../lib/PHPMailer/PHPMailerAutoload.php');

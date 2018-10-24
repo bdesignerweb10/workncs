@@ -146,6 +146,8 @@ $("#logout").on("click", function(e) {
 
 	/* GERENCIAR CURSOS */
 
+	
+
     $('#btn-add-curso').click(function(e) {
 		e.preventDefault();
 

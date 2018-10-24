@@ -54,6 +54,10 @@
 		<script src="../js/main.js"></script>
 		<script src="js/app.js"></script>
 		<script src="../js/jquery.datetimepicker.js"></script>
+		<script src="../js/jquery.mask.js"></script>
+<script>
+	$("#data_inicio").mask('00/00/0000');
+</script>
 		<?php if($conn) $conn->close(); ?>
 	</body>
 </html>

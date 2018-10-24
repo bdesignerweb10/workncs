@@ -15,12 +15,12 @@
 
 					$id = $_GET['id']; 
 
-			    	$qry_curso = $conn->query("SELECT cod_curso, nome, data_inicio, descricao ,inscricao_aberta,destaque, ativo FROM cursos WHERE cod_curso = $id") or trigger_error("27005 - " . $conn->error);
+			    	$qry_curso = $conn->query("SELECT cod_curso, nome, UNIX_TIMESTAMP(data_inicio) as data_inicio, descricao ,inscricao_aberta,destaque, ativo FROM cursos WHERE cod_curso = $id") or trigger_error("27005 - " . $conn->error);
 
 					if ($qry_curso && $qry_curso->num_rows > 0) {
 						$dados = "";
 		    			while($cur = $qry_curso->fetch_object()) {
-		    				$dados = '{"id" : "' . $cur->cod_curso . '", "nome" : "' . $cur->nome . '", "data" : "' . $cur->data_inicio . '","descricao" : "'. $cur->descricao .'"  ,"inscricao_aberta" : "' . $cur->inscricao_aberta . '","destaque" : "' . $cur->destaque . '", "ativo" : "' . $cur->ativo . '"}';
+		    				$dados = '{"id" : "' . $cur->cod_curso . '", "nome" : "' . $cur->nome . '", "data" : "' . $cur->data_inicio . '","descricao" : "'. $cur->descricao .'"  ,"inscricao" : "' . $cur->inscricao_aberta . '","destaque" : "' . $cur->destaque . '", "ativo" : "' . $cur->ativo . '"}';
 		    			}
 
 						echo '{"succeed": true, "dados": ' . $dados . '}';
@@ -61,11 +61,18 @@
 						}
 						else {					
 							$nome = $_POST["nome"];
-							$data_inicio = $_POST["data_inicio"];
+
+							function formatarData($data){
+							    $rData = implode("-", array_reverse(explode("/", trim($data))));
+							    return $rData;
+							}
+
+							$data_inicio = formatarData($_POST['data_inicio']);
+							
 							if ($data_inicio == null) {
-								$data_inicio = date('d/m/y');
-							} else {
-								$data_inicio = $_POST["data_inicio"];
+								$data_inicio =  date('y/m/d');
+							} else {								
+								$data_inicio;
 							}
 							$descricao = $_POST["descricao"];
 							$inscricao_aberta = (isset($_POST["inscricao"]) && $_POST["inscricao"] == "0" ? "0" : "1");						
@@ -126,11 +133,18 @@
 						}
 						else {								
 							$nome = $_POST["nome"];							
-							$data_inicio = $_POST["data_inicio"];
+							
+							function formatarData($data){
+							    $rData = implode("-", array_reverse(explode("/", trim($data))));
+							    return $rData;
+							}
+
+							$data_inicio = formatarData($_POST['data_inicio']);
+
 							if ($data_inicio == null) {
-								$data_inicio = date('d/m/y');
+								$data_inicio =  date('y/m/d');
 							} else {
-								$data_inicio = $_POST["data_inicio"];
+								$data_inicio;
 							}
 							$descricao = $_POST["descricao"];
 							$inscricao_aberta = (isset($_POST["inscricao"]) && $_POST["inscricao"] == "0" ? "0" : "1");						

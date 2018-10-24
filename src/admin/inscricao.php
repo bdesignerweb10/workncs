@@ -30,7 +30,7 @@
       							<th scope="row" class="center"><?php echo $curso->nome; ?></th>
       							<th scope="row" class="center"><?php echo date('d/m/Y', strtotime($curso->data_curso)); ?></th>
 						        <td class='center'>									
-									<a href="acts/acts.inscricao.php?act=dow&id=$id" class="" data-id="<?php echo $id;?>" alt="Fazer Download inscritos <?php echo $curso->id; ?>" title="Fazer Download inscritos <?php echo $curso->cod_curso; ?>">
+									<a href="acts/acts.inscricao.php?act=dow&id=<?php echo $id; ?>" class="" data-id="<?php echo $id;?>" alt="Fazer Download inscritos <?php echo $curso->id; ?>" title="Fazer Download inscritos <?php echo $curso->cod_curso; ?>">
 										<i class="fas fa-download fa-2x"></i>
 									</a>																		
 								</td>						           
