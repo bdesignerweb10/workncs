@@ -15,12 +15,12 @@
 
 					$id = $_GET['id']; 
 
-			    	$qry_curso = $conn->query("SELECT cod_curso, nome, UNIX_TIMESTAMP(data_inicio) as data_inicio, descricao ,inscricao_aberta,destaque, ativo FROM cursos WHERE cod_curso = $id") or trigger_error("27005 - " . $conn->error);
+			    	$qry_curso = $conn->query("SELECT cod_curso, nome, data_inicio as data_inicio, descricao ,inscricao_aberta,destaque, ativo FROM cursos WHERE cod_curso = $id") or trigger_error("27005 - " . $conn->error);
 
 					if ($qry_curso && $qry_curso->num_rows > 0) {
 						$dados = "";
 		    			while($cur = $qry_curso->fetch_object()) {
-		    				$dados = '{"id" : "' . $cur->cod_curso . '", "nome" : "' . $cur->nome . '", "data" : "' . $cur->data_inicio . '","descricao" : "'. $cur->descricao .'"  ,"inscricao" : "' . $cur->inscricao_aberta . '","destaque" : "' . $cur->destaque . '", "ativo" : "' . $cur->ativo . '"}';
+		    				$dados = '{"id" : "' . $cur->cod_curso . '", "nome" : "' . $cur->nome . '", "data_inicio" : "' . date('d/m/Y', strtotime($cur->data_inicio)) . '","descricao" : "'. $cur->descricao .'"  ,"inscricao" : "' . $cur->inscricao_aberta . '","destaque" : "' . $cur->destaque . '", "ativo" : "' . $cur->ativo . '"}';
 		    			}
 
 						echo '{"succeed": true, "dados": ' . $dados . '}';

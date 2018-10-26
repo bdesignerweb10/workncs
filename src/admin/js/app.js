@@ -145,7 +145,7 @@ $("#logout").on("click", function(e) {
 	// END LOGIN (login.php)
 
 	/* GERENCIAR CURSOS */
-
+	
 	
 
     $('#btn-add-curso').click(function(e) {
