@@ -1,24 +1,48 @@
 <?php
 	require_once('header.php');
-?>
-	<div class="row-fluid capa">		
-	</div><!-- row-->	
-</div><!-- container-fluid -->
+	$slides = $conn->query("select nome, link, img from tbl_slides where ativo = 0") or trigger_error($conn->error);
+?>	
+<div class="container-fluid slide">
+		<div class="row">
+			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+	  			<div class="carousel-inner">
+			  	<?php 		
+			  		$count = 0;								
+					if ($slides && $slides->num_rows > 0) {
+					  	while($banner = $slides->fetch_object()) {	
+				 ?>
+	    			<div class="carousel-item <?php if($count == 0) echo 'active'; ?>" data-interval="10000">	      	
+	      				<a href="<?php echo $banner->link; ?>"><img src="img/slides/<?php echo $banner->img; ?>" class="d-block w-100" alt="..."></a>
+	    			</div>
+			    	<?php $count++; } ?> 
+				<?php } ?>		    
+	  			</div>
+	  			<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+	    			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	    			<span class="sr-only">Previous</span>
+	  			</a>
+				<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div><!-- row -->		
+	</div><!-- container-->
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-4">
 			<h2 class="head-title">Próximos Cursos <img src="img/cursos.png" class="icon-index"></h2>
-			<p class="text-index">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet dui diam. Proin tempus vel nisl ac hendrerit. Etiam nulla enim, aliquam et lorem et, sollicitudin laoreet risus. Nunc nulla lorem, gravida eget porta quis, pellentesque in nibh. Cras in mattis urna, sed laoreet dui. Nam at blandit lacus, non tincidunt ligula. Quisque a dolor a enim pharetra maximus vel vel sem. Proin diam enim, vestibulum in metus vel, semper sodales neque. Etiam sodales semper risus vel egestas. Vivamus consequat pulvinar vulputate. Suspendisse potenti. Maecenas dictum, turpis nec consequat molestie, nunc velit sodales augue, et auctor ante lectus at dolor. Integer vestibulum a tortor eget mattis. Curabitur vitae nulla nibh.</p>
+			<p class="text-index">As NR- normas regulamentadoras são um conjunto de condições e procedimentos, regidas pelo ministério do trabalho, que devem ser respeitadas pelas empresas públicas e privadas. Os cursos e treinamentos são voltados para os profissionais que praticam atividades que de forma efetiva será capacitado para desempenhar as atividades de forma segura e eficiente dentro do que rege a norma</p>
 			<a href="" class="btn btn-dark btn-index">Conhecer cursos</a>
 		</div>
 		<div class="col-sm-4">
 			<h2 class="head-title">Palestras <img src="img/palestras.png" class="icon-index"></h2>
-			<p class="text-index">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet dui diam. Proin tempus vel nisl ac hendrerit. Etiam nulla enim, aliquam et lorem et, sollicitudin laoreet risus. Nunc nulla lorem, gravida eget porta quis, pellentesque in nibh. Cras in mattis urna, sed laoreet dui. Nam at blandit lacus, non tincidunt ligula. Quisque a dolor a enim pharetra maximus vel vel sem. Proin diam enim, vestibulum in metus vel, semper sodales neque. Etiam sodales semper risus vel egestas. Vivamus consequat pulvinar vulputate. Suspendisse potenti. Maecenas dictum, turpis nec consequat molestie, nunc velit sodales augue, et auctor ante lectus at dolor. Integer vestibulum a tortor eget mattis. Curabitur vitae nulla nibh.</p>
+			<p class="text-index">A Work treinamentos fornece as mais variadas palestras se aplicando sempre a sua real necessidade aonde os profissionais são altamente qualificados e tratam de assunto com experiência de causa, visando atingir o público da empresa com o objetivo de orientação e leva-lo ao conhecimento assuntos discutidos.</p>
 			<a href="" class="btn btn-dark btn-index">Me informar sobre as palestras</a>
 		</div>
 		<div class="col-sm-4">
 			<h2 class="head-title">Documentação <img src="img/documentacao.png" class="icon-index"></h2>
-			<p class="text-index">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet dui diam. Proin tempus vel nisl ac hendrerit. Etiam nulla enim, aliquam et lorem et, sollicitudin laoreet risus. Nunc nulla lorem, gravida eget porta quis, pellentesque in nibh. Cras in mattis urna, sed laoreet dui. Nam at blandit lacus, non tincidunt ligula. Quisque a dolor a enim pharetra maximus vel vel sem. Proin diam enim, vestibulum in metus vel, semper sodales neque. Etiam sodales semper risus vel egestas. Vivamus consequat pulvinar vulputate. Suspendisse potenti. Maecenas dictum, turpis nec consequat molestie, nunc velit sodales augue, et auctor ante lectus at dolor. Integer vestibulum a tortor eget mattis. Curabitur vitae nulla nibh.</p>
+			<p class="text-index">O ministério do trabalho define através das normas regulamentadoras algumas documentações às empresas públicas e privadas. Cabe salientar que além de atender a essa legislação, as documentações servem para promover a segurança do trabalho no ambiente empresarial, deixando tudo dentro dos padrões estabelecidos</p>
 			<a href="" class="btn btn-dark btn-index">Saiba mais</a>
 		</div>	
 	</div><!-- row -->	

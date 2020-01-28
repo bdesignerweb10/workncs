@@ -28,12 +28,12 @@
 		$mensagem = nl2br($_POST['mensagem']);
 	}
 	
-    $serverEmail = 'contato@worktreinamentos.com.br';
-    $serverSenha = '#work20ncs18';
+    $serverEmail = 'otacilio@worktreinamentos.com.br';
+    $serverSenha = 'Hoxhbn4657';
     $serverNome = 'Website | Work NCS';
 
     $enviaNome = 'Work NCS';
-    $enviaEmail = 'contato@worktreinamentos.com.br';
+    $enviaEmail = 'otacilio@worktreinamentos.com.br';
     $assunto = 'Contato Website Work NCS';
 
     $msg = 'Mensagem enviada do site Work NCS'.'<br />';

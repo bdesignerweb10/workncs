@@ -47,7 +47,7 @@
 	<nav>
 		<div class="sidebar">
 			<div class="sidebar-header">
-				<img src="../img/logo-work-65.png" alt="Logo Cartola">
+				<img src="../img/logo-work-65.png" alt="Logo Work">
 			</div><!-- sidebar-header -->
 
 			<ul class="nav">
@@ -55,6 +55,18 @@
 					<a href="home" class="nav-link<?php echo basename($_SERVER['PHP_SELF']) == 'home.php' ? ' nav-active' : ''; ?>">
 					<i class="fas fa-home"></i>	
 					Home
+					</a>
+				</li>
+				<li class="nav-item">					
+					<a href="slides" class="nav-link<?php echo basename($_SERVER['PHP_SELF']) == 'slides.php' ? ' nav-active' : ''; ?>">
+					<i class="far fa-images"></i>	
+					Slides
+					</a>
+				</li>
+				<li class="nav-item">					
+					<a href="quem-somos" class="nav-link<?php echo basename($_SERVER['PHP_SELF']) == 'quem-somos.php' ? ' nav-active' : ''; ?>">
+					<i class="far fa-address-card"></i>	
+					Quem Somos
 					</a>
 				</li>
 				<li class="nav-item">					

@@ -8,7 +8,8 @@
 </div><!-- container-fluid -->
 	<div class="container-fluid">
 		<h3 class="title-servicos">Nossos Cursos</h3>
-		<p class="text-curso">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra tempus ipsum ac maximus. Ut dapibus tincidunt lobortis. Etiam in metus odio. Aenean est tellus, laoreet eu tempor eu, molestie non erat. Integer tincidunt mollis faucibus. Quisque erat tellus, cursus quis luctus at, ullamcorper vitae purus. Mauris placerat tristique libero non faucibus. Sed sit amet diam eget leo fermentum tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis sem non ante vulputate posuere nec sed neque. Proin egestas eu magna viverra blandit. Integer placerat auctor tellus non lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+		<p class="text-curso">A WORK TREINAMENTOS atua em todos os segmentos empresariais, nas questões relativas a Segurança do Trabalho. Oferecemos consultorias, treinamentos, capacitação e desenvolvimento técnico nas áreas de prevenção aos riscos ocupacionais e meio ambiente laboral. Nosso compromisso é com a qualidade e eficiência na prestação de serviços. Nossa equipe é composta por: Engenheiros, Advogados e Técnicos em Segurança do Trabalho.</p>
+		<p class="text-curso">A WORK TREINAMENTOS acredita que para um desempenho eficiente de uma equipe é fundamental que todos os trabalhadores recebam cursos/treinamentos, visando conscientizá-los de que a segurança no trabalho deve ser um hábito diário e não um dever a ser cumprido.</p>
 		<h3 class="title-servicos">Cursos em destaque</h3>
 		<div class="row">	
 		<?php if ($destaques && $destaques->num_rows > 0) {

@@ -10,6 +10,11 @@
 	padding: 20px;
 }
 
+.logo img{
+	width: 320px;
+    padding: 39px 0;
+}
+
 .redessociais{
 	text-align: right;
     margin-right: 16px;
@@ -38,12 +43,18 @@
     white-space: nowrap;
     &:hover{
 		color:  #435762;
-    	border-bottom: 2px solid #4db3e3;
+    	border-bottom: 2px solid #89d42f;
     	padding-bottom: 1px;	
 	}
 }
 
 /* Fim menu */
+
+/* slide */
+
+.slide{
+	margin-bottom: 40px;
+}
 
 .capa{
 	background-image: url(../img/capa.png);
@@ -56,7 +67,7 @@
 .head-title{
 	text-transform: uppercase;
 	color: #435762;
-	border-bottom: 3px solid #4db3e3;
+	border-bottom: 3px solid #89d42f;
 }
 
 .icon-index{
@@ -146,10 +157,21 @@ iframe{
 }
 
 
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #89d42f;
+    border-color: #89d42f;
+}
+
 /* Quem somos */
 
 .quem-somos{
 	background-color: #e2e2e2;
+}
+
+.qs-logo img{
+	width: 325px;
 }
 
 @media screen and (max-width: 600px) {
@@ -162,7 +184,7 @@ iframe{
 	padding-top: 30px;
     padding-bottom: 20px;
     margin-left: 155px;
-    color: #4db3e3;
+    color: #89d42f;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -170,13 +192,13 @@ iframe{
 .title-servicos{
 	padding-top: 30px;
     padding-bottom: 20px;
-    color: #4db3e3;
+    color: #89d42f;
     font-weight: bold;
     text-transform: uppercase;
 }
 
 .title-contato{	
-    color: #4db3e3;
+    color: #89d42f;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -204,7 +226,7 @@ iframe{
 	padding-top: 30px;
 	padding-bottom: 20px;
 	margin-left: 50px;
-	color: #4db3e3;
+	color: #60a70c;
 	font-weight: bold;
 	font-size: 30px;
 	text-transform: uppercase;
@@ -221,7 +243,7 @@ iframe{
 	font-size: 17px;
 	color: #fff;
 	&:hover{
-		color: #4db3e3;
+		color: #60a70c;
 	}
 }
 
@@ -287,6 +309,10 @@ iframe{
 
 .info-inscricao{
 	margin-top: 28px;
+}
+
+.video {
+	margin-bottom: 20px;	
 }
 
 

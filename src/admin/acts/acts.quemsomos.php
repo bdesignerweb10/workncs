@@ -15,19 +15,19 @@
 
 					$id = $_GET['id']; 
 
-			    	$qry_curso = $conn->query("SELECT cod_curso, nome, descricao,url,data_inicio ,inscricao_aberta,destaque, ativo FROM cursos WHERE cod_curso = $id") or trigger_error("27005 - " . $conn->error);
+			    	$qry_quemsomos = $conn->query("SELECT id, nome, descricao, ativo FROM quemsomos WHERE id = $id") or trigger_error("27005 - " . $conn->error);
 
-					if ($qry_curso && $qry_curso->num_rows > 0) {
+					if ($qry_quemsomos && $qry_quemsomos->num_rows > 0) {
 						$dados = "";
-		    			while($cur = $qry_curso->fetch_object()) {
-		    				$dados = '{"id" : "' . $cur->cod_curso . '", "nome" : "' . $cur->nome . '", "data_inicio" : "' . date('d/m/Y', strtotime($cur->data_inicio)) . '","descricao" : "'. $cur->descricao .'","link" : "'. str_replace('"', "'", $cur->url) .'","inscricao" : "' . $cur->inscricao_aberta . '","destaque" : "' . $cur->destaque . '", "ativo" : "' . $cur->ativo . '"}';
+		    			while($qs = $qry_quemsomos->fetch_object()) {
+		    				$dados = '{"id" : "' . $qs->id . '", "nome" : "' . $qs->nome . '","descricao" : "'. $qs->descricao .'","ativo" : "' . $qs->ativo . '"}';
 		    			}
 
 						echo '{"succeed": true, "dados": ' . $dados . '}';
 						exit();
 		    		}
 		    		else {
-		    			throw new Exception('Nenhum curso encontrado com o ID ' . $id . "!");
+		    			throw new Exception('Nenhuma empresa encontrada com o ID ' . $id . "!");
 		    		}
 				} catch(Exception $e) {
 					echo '{"succeed": false, "errno": 24005, "title": "Erro ao carregar os dados!", "erro": "Ocorreu um erro ao carregar os dados: ' . $e->getMessage() . '"}';
@@ -44,13 +44,13 @@
 						$errMsg = "";
 
 						if(!isset($_POST["nome"]) || empty($_POST["nome"])) {
-							$errMsg .= "Nome (Nome do curso)";
+							$errMsg .= "Nome (Nome da empresa)";
 							$isValid = false;
 						}
 						
 
 						if(!isset($_POST["descricao"]) || empty($_POST["descricao"])) {
-							$errMsg .= "Descrição do Curso";
+							$errMsg .= "Descrição da empresa";
 							$isValid = false;
 						}						
 
@@ -61,33 +61,17 @@
 						}
 						else {					
 							$nome = $_POST["nome"];
-
-							function formatarData($data){
-							    $rData = implode("-", array_reverse(explode("/", trim($data))));
-							    return $rData;
-							}
-
-							$data_inicio = formatarData($_POST['data_inicio']);
-							
-							if ($data_inicio == null) {
-								$data_inicio =  date('y/m/d');
-							} else {								
-								$data_inicio;
-							}
 							$descricao = $_POST["descricao"];
-							$url = $_POST["link"];
-							$inscricao_aberta = (isset($_POST["inscricao"]) && $_POST["inscricao"] == "0" ? "0" : "1");						
-							$destaque= (isset($_POST["destaque"]) && $_POST["destaque"] == "0" ? "0" : "1");
 							$ativo= (isset($_POST["ativo"]) && $_POST["ativo"] == "0" ? "0" : "1");
 														
 
-							$qry_cursos = "INSERT INTO cursos (nome, descricao, url, data_inicio, inscricao_aberta ,destaque, ativo) VALUES ('" . $nome . "','" . $descricao . "','" . $url . "', '". $data_inicio ."' ,'" . $inscricao_aberta . "','" . $destaque . "','" . $ativo . "')";
+							$qry_quemsomos = "INSERT INTO quemsomos (nome, descricao, ativo) VALUES ('" . $nome . "','" . $descricao . "','" . $ativo . "')";
 
-							if ($conn->query($qry_cursos) === TRUE) {
+							if ($conn->query($qry_quemsomos) === TRUE) {
 								$conn->commit();
 								echo '{"succeed": true}';
 							} else {
-						        throw new Exception("Erro ao inserir o evento: " . $qry_cursos . "<br>" . $conn->error);
+						        throw new Exception("Erro ao inserir o evento: " . $qry_quemsomos . "<br>" . $conn->error);
 							}							
 						}
 					}
@@ -118,12 +102,12 @@
 						$errMsg = "";
 
 						if(!isset($_POST["nome"]) || empty($_POST["nome"])) {
-							$errMsg .= "Nome (nome do curos)";
+							$errMsg .= "Nome (nome da empresa)";
 							$isValid = false;
 						}					
 
 						if(!isset($_POST["descricao"]) || empty($_POST["descricao"])) {
-							$errMsg .= "Descrção do curso";
+							$errMsg .= "Descrção da empresa";
 							$isValid = false;
 						}
 
@@ -134,40 +118,20 @@
 						}
 						else {								
 							$nome = $_POST["nome"];							
-							
-							function formatarData($data){
-							    $rData = implode("-", array_reverse(explode("/", trim($data))));
-							    return $rData;
-							}
-
-							$data_inicio = formatarData($_POST['data_inicio']);
-
-							if ($data_inicio == null) {
-								$data_inicio =  date('y/m/d');
-							} else {
-								$data_inicio;
-							}
 							$descricao = $_POST["descricao"];
-							$url = $_POST["link"];	
-							$inscricao_aberta = (isset($_POST["inscricao"]) && $_POST["inscricao"] == "0" ? "0" : "1");						
-							$destaque= (isset($_POST["destaque"]) && $_POST["destaque"] == "0" ? "0" : "1");
 							$ativo= (isset($_POST["ativo"]) && $_POST["ativo"] == "0" ? "0" : "1");
 							
 
-							$qry_cursos = "UPDATE cursos 
+							$qry_quemsomos = "UPDATE quemsomos 
 											  SET nome = '" . $nome . "',										      
 											      descricao = '" . $descricao . "',
-											      url = '" . $url . "',
-											      data_inicio = '". $data_inicio ."',
-											      inscricao_aberta = " . $inscricao_aberta . ",
-											      destaque = " . $destaque . ",
 											      ativo = " . $ativo . "
-											WHERE cod_curso = $id";
-							if ($conn->query($qry_cursos) === TRUE) {
+											WHERE id = $id";
+							if ($conn->query($qry_quemsomos) === TRUE) {
 								$conn->commit();
 								echo '{"succeed": true}';
 							} else {
-						        throw new Exception("Erro ao alterar o evento: " . $qry_cursos . "<br>" . $conn->error);
+						        throw new Exception("Erro ao alterar o evento: " . $qry_quemsomos . "<br>" . $conn->error);
 							}
 						}
 					}
@@ -193,18 +157,18 @@
 
 				$id = $_GET['id']; 
 
-				$qrydel_cursos = "DELETE FROM cursos WHERE cod_curso = $id";
-				if ($conn->query($qrydel_cursos) === TRUE) {
+				$qrydel_quemsomos = "DELETE FROM quemsomos WHERE id = $id";
+				if ($conn->query($qrydel_quemsomos) === TRUE) {
 				
-					$qrydelcursos = "DELETE FROM cursos WHERE cod_curso = $id";
-					if ($conn->query($qrydelcursos) === TRUE) {
+					$qrydelquemsomos = "DELETE FROM quemsomos WHERE id = $id";
+					if ($conn->query($qrydelquemsomos) === TRUE) {
 						$conn->commit();
 						echo '{"succeed": true}';
 					} else {
-				        throw new Exception("Erro ao remover curso: " . $qrydelcursos . "<br>" . $conn->error);
+				        throw new Exception("Erro ao remover curso: " . $qrydelquemsomos . "<br>" . $conn->error);
 					}
 				} else {
-			        throw new Exception("Erro ao remover curso: " . $qrydel_curso . "<br>" . $conn->error);
+			        throw new Exception("Erro ao remover curso: " . $qrydel_quemsomos . "<br>" . $conn->error);
 				}
 			} catch(Exception $e) {
 				$conn->rollback();

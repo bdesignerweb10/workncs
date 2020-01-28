@@ -101,14 +101,17 @@
 							<label for="data_inicio">Data Ínicio</label>
 			    			<input type="text" class="form-control form-control-lg" id="data_inicio" name="data_inicio" aria-describedby="data_inicio" placeholder="Informe a data de ínicio do curso..." data-error="Por favor, informe a data ínicio." maxlength="120">
 			    			<div class="help-block with-errors"></div>
-			    		</div>
-			    		
-				  			<div class="col-sm-12">
-							    <label for="descricao">Descrição do curso</label>
-							    <textarea class="form-control form-control-lg" id="descricao" name="descricao" rows="6" placeholder="Informe a descrição..." data-error="Por favor, informe a descrição." required></textarea>
-				    			<div class="help-block with-errors"></div>
-				    		</div>
-								    		
+			    		</div>			    		
+				  		<div class="col-sm-12">
+						    <label for="descricao">Descrição do curso</label>
+						    <textarea class="form-control form-control-lg" id="descricao" name="descricao" rows="6" placeholder="Informe a descrição..." data-error="Por favor, informe a descrição." required></textarea>
+				    		<div class="help-block with-errors"></div>
+				    	</div>
+				    	<div class="col-sm-12">		    			
+							<label for="nome">Video</label>
+			    			<input type="text" class="form-control form-control-lg" id="link" name="link" aria-describedby="nome" placeholder="Informe o link do video" data-error="Por favor, informe o link do video.">
+			    			<div class="help-block with-errors"></div>
+			    		</div>								    		
 					</div>
 					
 					<div class="row" style="margin-top:20px; margin-bottom: 10px;">	

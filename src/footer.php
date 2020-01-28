@@ -23,10 +23,8 @@
 			<nav class="nav flex-column footer-menu">
 				<a class="nav-link nav-footer active <?php echo basename($_SERVER['PHP_SELF']) == '#' ? ' nav-active' : ''; ?>" href="#">Redes Sociais</a>							  
 			</nav>	
-			<div class="social">
-				<a href="#"><img class="facebook" src="img/facebook.png"></a>
-				<a href="#"><img class="facebook" src="img/twitter.png"></a>
-				<a href="#"><img class="facebook" src="img/instagram.png"></a>	
+			<div class="social">				
+				<a href="https://www.toopics.com/otacilioworktreinamentos" target="_blank"><img class="facebook" src="img/instagram.png"></a>	
 			</div>					
 		</div>	
 	</div>

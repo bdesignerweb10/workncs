@@ -3,9 +3,9 @@ require_once("../../acts/connect.php");
 
 try {
     if(isset($_SESSION)) {
-    	session_unset();
-    	session_destroy();
-    	session_write_close();
+        session_unset();
+        session_destroy();
+        session_write_close();
     }
 
     $_SESSION = array();
@@ -18,7 +18,7 @@ try {
             $params["path"], $params["domain"],
             $params["secure"], $params["httponly"]
         );
-    	setcookie (session_id(), '', time() - 42000,
+        setcookie (session_id(), '', time() - 42000,
             $params["path"], $params["domain"],
             $params["secure"], $params["httponly"]
         );

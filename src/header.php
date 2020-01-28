@@ -44,10 +44,8 @@
 				<a href="index.php"><img src="img/logo-work.png"></a>
 			</div>
 			<div class="col-sm-8">
-				<div class="redessociais">
-					<a href=""><img src="img/facebook.png"></a>
-					<a href=""><img src="img/twitter.png"></a>
-					<a href=""><img src="img/instagram.png"></a>
+				<div class="redessociais">					
+					<a href="https://www.toopics.com/otacilioworktreinamentos" target="_blank"><img src="img/instagram.png"></a>
 				</div>				
 				<!--<nav class="menu-navigation-basic">
 					<a href="index.php" class="selected">Ínicio</a>
@@ -71,7 +69,7 @@
 				      </li>
 				      <li class="nav-item">
 				        <a class="nav-link" href="cursos.php">Cursos</a>
-				      </li>
+				      </li>				      
 				      <li class="nav-item">
 				        <a class="nav-link" href="quem-somos.php">Quem Somos</a>
 				      </li>
@@ -83,4 +81,4 @@
 				</nav>
 			</div>
 		</div><!-- row -->
-	
+	</div>

@@ -9,25 +9,25 @@
 			case 'showupd':
 				try {
 					if(!isset($_GET['id']) || empty($_GET['id'])) {
-						echo '{"succeed": false, "errno": 27004, "title": "Parâmetro não encontrado!", "erro": "Parâmetro do ID do curso não enviado! Favor contatar o administrador mostrando o erro!"}';
+						echo '{"succeed": false, "errno": 27004, "title": "Parâmetro não encontrado!", "erro": "Parâmetro do ID do slide não enviado! Favor contatar o administrador mostrando o erro!"}';
 						exit();
 					}
 
 					$id = $_GET['id']; 
 
-			    	$qry_curso = $conn->query("SELECT cod_curso, nome, descricao,url,data_inicio ,inscricao_aberta,destaque, ativo FROM cursos WHERE cod_curso = $id") or trigger_error("27005 - " . $conn->error);
+			    	$qry_slide = $conn->query("SELECT id, nome, link,img , ativo FROM tbl_slides WHERE id = $id") or trigger_error("27005 - " . $conn->error);
 
-					if ($qry_curso && $qry_curso->num_rows > 0) {
+					if ($qry_slide && $qry_slide->num_rows > 0) {
 						$dados = "";
-		    			while($cur = $qry_curso->fetch_object()) {
-		    				$dados = '{"id" : "' . $cur->cod_curso . '", "nome" : "' . $cur->nome . '", "data_inicio" : "' . date('d/m/Y', strtotime($cur->data_inicio)) . '","descricao" : "'. $cur->descricao .'","link" : "'. str_replace('"', "'", $cur->url) .'","inscricao" : "' . $cur->inscricao_aberta . '","destaque" : "' . $cur->destaque . '", "ativo" : "' . $cur->ativo . '"}';
+		    			while($banner = $qry_slide->fetch_object()) {
+		    				$dados = '{"id" : "' . $banner->id . '", "nome" : "' . $banner->nome . '","link" : "'. $banner->link .'"  ,"img" : "' . $banner->img . '","ativo" : "' . $banner->ativo . '"}';
 		    			}
 
 						echo '{"succeed": true, "dados": ' . $dados . '}';
 						exit();
 		    		}
 		    		else {
-		    			throw new Exception('Nenhum curso encontrado com o ID ' . $id . "!");
+		    			throw new Exception('Nenhum slide encontrado com o ID ' . $id . "!");
 		    		}
 				} catch(Exception $e) {
 					echo '{"succeed": false, "errno": 24005, "title": "Erro ao carregar os dados!", "erro": "Ocorreu um erro ao carregar os dados: ' . $e->getMessage() . '"}';
@@ -44,50 +44,49 @@
 						$errMsg = "";
 
 						if(!isset($_POST["nome"]) || empty($_POST["nome"])) {
-							$errMsg .= "Nome (Nome do curso)";
+							$errMsg .= "Nome (Nome do slide)";
 							$isValid = false;
 						}
 						
 
-						if(!isset($_POST["descricao"]) || empty($_POST["descricao"])) {
-							$errMsg .= "Descrição do Curso";
+						/*if(!isset($_POST["img"]) || empty($_POST["img"])) {
+							$errMsg .= "Imagem do slide";
 							$isValid = false;
-						}						
+						}*/						
 
 						if(!$isValid) {
 							echo '{"succeed": false, "errno": 27006, "title": "Erro em um ou mais campos do formulário!", "erro": "Ocorreram erros nos seguintes campos do formulário: <b>' . $errMsg . '</b>"}';
 							$conn->rollback();
 							exit();
 						}
-						else {					
+						else {	
+
+							if(isset($_FILES['img'])) {
+								//Pegando extensão do arquivo								
+								$ext = strtolower(substr($_FILES['img']['name'],-4)); 
+								//Definindo um novo nome para o arquivo
+							    $new_name = date("Y.m.d-H.i.s") . $ext; 
+							    //Diretório para uploads 
+							    $dir = '../../img/slides/'; 
+							    //Fazer upload do arquivo
+							    move_uploaded_file($_FILES['img']['tmp_name'], $dir.$new_name); 
+							    //Permissão na pasta (Linux)
+							    //chmod("../../img/slides/" . $new_name, 755);
+							}
+
+							$imagem = $_FILES['img']['name'];				
 							$nome = $_POST["nome"];
-
-							function formatarData($data){
-							    $rData = implode("-", array_reverse(explode("/", trim($data))));
-							    return $rData;
-							}
-
-							$data_inicio = formatarData($_POST['data_inicio']);
-							
-							if ($data_inicio == null) {
-								$data_inicio =  date('y/m/d');
-							} else {								
-								$data_inicio;
-							}
-							$descricao = $_POST["descricao"];
-							$url = $_POST["link"];
-							$inscricao_aberta = (isset($_POST["inscricao"]) && $_POST["inscricao"] == "0" ? "0" : "1");						
-							$destaque= (isset($_POST["destaque"]) && $_POST["destaque"] == "0" ? "0" : "1");
+							$link = $_POST["link"];
 							$ativo= (isset($_POST["ativo"]) && $_POST["ativo"] == "0" ? "0" : "1");
 														
 
-							$qry_cursos = "INSERT INTO cursos (nome, descricao, url, data_inicio, inscricao_aberta ,destaque, ativo) VALUES ('" . $nome . "','" . $descricao . "','" . $url . "', '". $data_inicio ."' ,'" . $inscricao_aberta . "','" . $destaque . "','" . $ativo . "')";
+							$qry_slides = "INSERT INTO tbl_slides (nome, link, img, ativo) VALUES ('" . $nome . "','" . $link . "', '". $new_name ."' ,'" . $ativo . "')";
 
-							if ($conn->query($qry_cursos) === TRUE) {
+							if ($conn->query($qry_slides) === TRUE) {
 								$conn->commit();
 								echo '{"succeed": true}';
 							} else {
-						        throw new Exception("Erro ao inserir o evento: " . $qry_cursos . "<br>" . $conn->error);
+						        throw new Exception("Erro ao inserir o evento: " . $qry_slides . "<br>" . $conn->error);
 							}							
 						}
 					}
@@ -107,7 +106,7 @@
 					$conn->autocommit(FALSE);
 
 					if(!isset($_GET['id']) || empty($_GET['id'])) {
-						echo '{"succeed": false, "errno": 27014, "title": "Parâmetro não encontrado!", "erro": "Parâmetro do ID do curso não enviado! Favor contatar o administrador mostrando o erro!"}';
+						echo '{"succeed": false, "errno": 27014, "title": "Parâmetro não encontrado!", "erro": "Parâmetro do ID do slide não enviado! Favor contatar o administrador mostrando o erro!"}';
 						exit();
 					}	
 
@@ -118,14 +117,14 @@
 						$errMsg = "";
 
 						if(!isset($_POST["nome"]) || empty($_POST["nome"])) {
-							$errMsg .= "Nome (nome do curos)";
+							$errMsg .= "Nome (nome do slide)";
 							$isValid = false;
 						}					
 
-						if(!isset($_POST["descricao"]) || empty($_POST["descricao"])) {
-							$errMsg .= "Descrção do curso";
+						/*if(!isset($_POST["img"]) || empty($_POST["img"])) {
+							$errMsg .= "Imagem do slide";
 							$isValid = false;
-						}
+						}*/
 
 						if(!$isValid) {
 							echo '{"succeed": false, "errno": 27010, "title": "Erro em um ou mais campos do formulário!", "erro": "Ocorreram erros nos seguintes campos do formulário: <b>' . $errMsg . '</b>"}';
@@ -133,41 +132,42 @@
 							exit();
 						}
 						else {								
-							$nome = $_POST["nome"];							
+							if(isset($_FILES['img'])) {
+								//Pegando extensão do arquivo								
+								$ext = strtolower(substr($_FILES['img']['name'],-4)); 
+								//Definindo um novo nome para o arquivo
+							    $new_name = date("Y.m.d-H.i.s") . $ext; 
+							    //Diretório para uploads 
+							    $dir = '../../img/slides/'; 
+							    //Fazer upload do arquivo
+							    move_uploaded_file($_FILES['img']['tmp_name'], $dir.$new_name); 
+							    //Permissão na pasta (Linux)
+							    //chmod("../../img/slides/" . $new_name, 755);
+							}
+
+							$imagem = $_FILES['img']['name'];				
+							$nome = $_POST["nome"];					
 							
-							function formatarData($data){
+							/*function formatarData($data){
 							    $rData = implode("-", array_reverse(explode("/", trim($data))));
 							    return $rData;
-							}
+							}*/
 
-							$data_inicio = formatarData($_POST['data_inicio']);
-
-							if ($data_inicio == null) {
-								$data_inicio =  date('y/m/d');
-							} else {
-								$data_inicio;
-							}
-							$descricao = $_POST["descricao"];
-							$url = $_POST["link"];	
-							$inscricao_aberta = (isset($_POST["inscricao"]) && $_POST["inscricao"] == "0" ? "0" : "1");						
-							$destaque= (isset($_POST["destaque"]) && $_POST["destaque"] == "0" ? "0" : "1");
+							$link = $_POST["link"];
 							$ativo= (isset($_POST["ativo"]) && $_POST["ativo"] == "0" ? "0" : "1");
 							
 
-							$qry_cursos = "UPDATE cursos 
+							$qry_slides = "UPDATE tbl_slides 
 											  SET nome = '" . $nome . "',										      
-											      descricao = '" . $descricao . "',
-											      url = '" . $url . "',
-											      data_inicio = '". $data_inicio ."',
-											      inscricao_aberta = " . $inscricao_aberta . ",
-											      destaque = " . $destaque . ",
+											      link = '" . $link . "',
+											      img = '". $new_name ."',
 											      ativo = " . $ativo . "
-											WHERE cod_curso = $id";
-							if ($conn->query($qry_cursos) === TRUE) {
+											WHERE id = $id";
+							if ($conn->query($qry_slides) === TRUE) {
 								$conn->commit();
 								echo '{"succeed": true}';
 							} else {
-						        throw new Exception("Erro ao alterar o evento: " . $qry_cursos . "<br>" . $conn->error);
+						        throw new Exception("Erro ao alterar o evento: " . $qry_slides . "<br>" . $conn->error);
 							}
 						}
 					}
@@ -193,18 +193,18 @@
 
 				$id = $_GET['id']; 
 
-				$qrydel_cursos = "DELETE FROM cursos WHERE cod_curso = $id";
-				if ($conn->query($qrydel_cursos) === TRUE) {
+				$qrydel_slides = "DELETE FROM tbl_slides WHERE id = $id";
+				if ($conn->query($qrydel_slides) === TRUE) {
 				
-					$qrydelcursos = "DELETE FROM cursos WHERE cod_curso = $id";
-					if ($conn->query($qrydelcursos) === TRUE) {
+					$qrydelslides = "DELETE FROM tbl_slides WHERE id = $id";
+					if ($conn->query($qrydelslides) === TRUE) {
 						$conn->commit();
 						echo '{"succeed": true}';
 					} else {
-				        throw new Exception("Erro ao remover curso: " . $qrydelcursos . "<br>" . $conn->error);
+				        throw new Exception("Erro ao remover slide: " . $qrydelslides . "<br>" . $conn->error);
 					}
 				} else {
-			        throw new Exception("Erro ao remover curso: " . $qrydel_curso . "<br>" . $conn->error);
+			        throw new Exception("Erro ao remover slide: " . $qrydel_slides . "<br>" . $conn->error);
 				}
 			} catch(Exception $e) {
 				$conn->rollback();

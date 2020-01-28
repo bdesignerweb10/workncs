@@ -9,6 +9,8 @@ RewriteRule ^contato/?$ contato.php
 
 RewriteRule ^admin/?$ admin/index.php
 RewriteRule ^admin/home/?$ admin/home.php
+RewriteRule ^admin/slides/?$ admin/slides.php
+RewriteRule ^admin/quem-somos/?$ admin/quem-somos.php
 RewriteRule ^admin/cursos/?$ admin/cursos.php
 RewriteRule ^admin/consultoria/?$ admin/consultoria.php
 RewriteRule ^admin/inscricao/?$ admin/inscricao.php
